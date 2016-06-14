@@ -1,0 +1,30 @@
+namespace: Test1
+flow:
+  name: flow2
+  results:
+    - FAILURE
+    - SUCCESS
+  workflow:
+    - flow3:
+        do:
+          Test1.flow3: []
+        navigate:
+          - SUCCESS: SUCCESS
+          - FAILURE: on_failure
+extensions:
+  graph:
+    steps:
+      flow3:
+        x: 325
+        y: 116
+    results:
+      SUCCESS:
+        c3bfad00-cf16-bff5-759e-c5a8382c2a65:
+          x: 951
+          y: 239
+    navigations:
+      570a3a01-c82d-4753-9841-93db74371636:
+        name: SUCCESS
+        sourceId: flow3
+        sourcePortName: SUCCESS
+        targetId: c3bfad00-cf16-bff5-759e-c5a8382c2a65
