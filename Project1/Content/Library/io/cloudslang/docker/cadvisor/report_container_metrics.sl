@@ -27,7 +27,6 @@
 ####################################################
 
 namespace: io.cloudslang.docker.cadvisor
-
 flow:
   name: report_container_metrics
   inputs:
@@ -36,7 +35,6 @@ flow:
     - cadvisor_port:
         default: '8080'
         required: false
-
   workflow:
     - retrieve_container_metrics:
         do:
@@ -45,7 +43,7 @@ flow:
             - host
             - cadvisor_port
         publish:
-          - response_body: ${return_result}
+          - response_body: '${return_result}'
           - returnCode
           - error_message
     - retrieve_machine_memory:
@@ -58,8 +56,8 @@ flow:
     - parse_container_metrics:
         do:
           parse_container:
-            - json_response: ${response_body}
-            - machine_memory_limit: ${memory_capacity}
+            - json_response: '${response_body}'
+            - machine_memory_limit: '${memory_capacity}'
         publish:
           - decoded
           - timestamp
