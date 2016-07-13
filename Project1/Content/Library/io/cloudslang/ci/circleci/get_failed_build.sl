@@ -5,7 +5,85 @@
 #   The Apache License is available at
 #   http://www.apache.org/licenses/LICENSE-2.0
 #
-
+####################################################
+#!!
+#! @description: Checks if the latest build of a project's branch from CircieCI has failed.
+#!               If the latest build from the branch has failed, it will send an email,
+#!               to the supervisor and commiter with the following:
+#!               Example:
+#!                        Repository: repository name
+#!                        Branch: branch name
+#!                        Username: github username
+#!                        Commiter email: email of github username
+#!                        Subject: Last commit subject
+#!                        Branch: failed
+#!               If the last build from the branch has not failed, it will send an email to reflect that.
+#! @input token: CircleCi user token.
+#!                To authenticate, add an API token using your account dashboard
+#!                Log in to CircleCi: https://circleci.com/vcs-authorize/
+#!                Go to : https://circleci.com/account/api and copy the API token.
+#!                If you don`t have any token generated, enter a new token name and then click on
+#! @input protocol: optional - connection protocol
+#!                  valid: 'http', 'https'
+#!                  default: 'https'
+#! @input host: circleci address
+#! @input proxy_host: optional - proxy server used to access the web site
+#! @input proxy_port: optional - proxy server port - Default: '8080'
+#! @input trust_keystore: optional - the pathname of the Java TrustStore file. This contains certificates from other parties
+#!                        that you expect to communicate with, or from Certificate Authorities that you trust to
+#!                        identify other parties.  If the protocol (specified by the 'url') is not 'https' or if
+#!                        trustAllRoots is 'true' this input is ignored.
+#!                        Default value: ..JAVA_HOME/java/lib/security/cacerts
+#!                        Format: Java KeyStore (JKS)
+#! @input trust_password: optional - the password associated with the TrustStore file. If trustAllRoots is false and trustKeystore is empty,
+#!                        trustPassword default will be supplied.
+#!                        Default value: changeit
+#! @input keystore: optional - the pathname of the Java KeyStore file. You only need this if the server requires client authentication.
+#!                  If the protocol (specified by the 'url') is not 'https' or if trustAllRoots is 'true' this input is ignored.
+#!                  Default value: ..JAVA_HOME/java/lib/security/cacerts
+#!                  Format: Java KeyStore (JKS)
+#! @input keystore_password: optional - the password associated with the KeyStore file. If trustAllRoots is false and keystore
+#!                           is empty, keystorePassword default will be supplied.
+#!                           Default value: changeit
+#! @input trust_keystore: optional - the pathname of the Java TrustStore file. This contains certificates from other parties
+#!                        that you expect to communicate with, or from Certificate Authorities that you trust to
+#!                        identify other parties.  If the protocol (specified by the 'url') is not 'https' or if
+#!                        trustAllRoots is 'true' this input is ignored.
+#!                        Default value: ..JAVA_HOME/java/lib/security/cacerts
+#!                        Format: Java KeyStore (JKS)
+#! @input trust_password: optional - the password associated with the TrustStore file. If trustAllRoots is false and trustKeystore is empty,
+#!                        trustPassword default will be supplied.
+#!                        Default value: changeit
+#! @input keystore: optional - the pathname of the Java KeyStore file. You only need this if the server requires client authentication.
+#!                  If the protocol (specified by the 'url') is not 'https' or if trustAllRoots is 'true' this input is ignored.
+#!                  Default value: ..JAVA_HOME/java/lib/security/cacerts
+#!                  Format: Java KeyStore (JKS)
+#! @input keystore_password: optional - the password associated with the KeyStore file. If trustAllRoots is false and keystore
+#!                           is empty, keystorePassword default will be supplied.
+#!                           Default value: changeit
+#! #input username - CircleCi username.
+#! #input project - Github project name.
+#! #input branch - Github project branch.
+#! @input content_type: optional - content type that should be set in the request header, representing the MIME-type of the
+#!                      data in the message body - Default: 'application/json'
+#! @input headers: optional - list containing the headers to use for the request separated by new line (CRLF);
+#!                 header name - value pair will be separated by ":" - Format: According to HTTP standard for
+#!                 headers (RFC 2616) - Example: 'Accept:application/json'
+#! #input commiter_email: email address of the commiter.
+#! #input supervisor: github supervisor email.
+#! @input hostname: email host
+#! @input port: email port
+#! @input from: email sender
+#! @input to: email recipient
+#! @input cc: optional - comma-delimited list of cc recipients - Default: Supervisor email.
+#! @output return_result: information returned
+#! @output error_message: return_result if status_code different than '200'
+#! @output return_code: '0' if success, '-1' otherwise
+#! @output status_code: status code of the HTTP call
+#! @result SUCCESS: successful
+#! @result FAILURE: otherwise
+#!!#
+####################################################
 
 namespace: io.cloudslang.ci.circleci
 

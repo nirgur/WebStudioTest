@@ -8,7 +8,7 @@
 ####################################################
 #!!
 #! @description: Prints document from Haven OnDemand
-#! @input api_key: user's API Keys
+#! @input api_key: user's API Key
 #! @input reference: A Haven OnDemand reference obtained from either the Expand Container or Store Object API. The corresponding document is passed to the API.
 #!!#
 ####################################################
@@ -19,8 +19,9 @@ imports:
      ediscovery: io.cloudslang.haven_on_demand.ediscovery
      file: io.cloudslang.base.files
      base: io.cloudslang.base.print
+     mail: io.cloudslang.base.mail
 flow:
-  name: print_result
+  name: get_results
 
   inputs:
      - api_key:
@@ -37,7 +38,18 @@ flow:
            - document
            - return_code
 
-     - print_doc:
+     - retrieve_results:
            do:
-             base.print_text:
-                - text: ${document}
+             retrieve_results:
+                - document
+           publish:
+             - link
+             - content
+
+     - write_to_db:
+         do:
+          file.add_text_to_file:
+             - file_path: "C:/Temp/result.txt"
+             - text: ${" link " + content[1] + " \n"}
+         publish:
+           - error_message: ${message}
