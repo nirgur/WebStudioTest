@@ -13,7 +13,7 @@
 #! @input ignore_case: optional - ignores case if set to true - Default: true
 #! @output return_result: number of times string_to_find was found in container
 #! @output return_code: 0 if everything went ok, -1 if an error was thrown
-#! @output error_message: returnResult if occurrence == '0'  else ''
+#! @output error_message: return_result if occurrence == '0'  else ''
 #! @result SUCCESS: string is found at least once
 #! @result FAILURE: otherwise
 #!!#
@@ -24,8 +24,10 @@ namespace: io.cloudslang.base.strings
 operation:
   name: string_occurrence_counter
   inputs:
-    - string_in_which_to_search
-    - string_to_find
+    - string_in_which_to_search:
+        required: false
+    - string_to_find:
+        required: false
     - ignore_case:
         default: 'true'
         required: false

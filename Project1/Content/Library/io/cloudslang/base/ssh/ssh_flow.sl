@@ -47,6 +47,7 @@ namespace: io.cloudslang.base.ssh
 imports:
   linux: io.cloudslang.base.os.linux
   utils: io.cloudslang.base.utils
+  ssh: io.cloudslang.base.ssh
 
 flow:
     name: ssh_flow
@@ -65,6 +66,7 @@ flow:
           required: false
       - privateKeyFile:
           default: ${get("private_key_file", "")}
+          required: false
           private: true
       - timeout: '90000'
       - character_set:
@@ -81,6 +83,7 @@ flow:
           required: false
       - agentForwarding:
           default: ${get("agent_forwarding", "")}
+          required: false
           private: true
       - smart_recovery: True
       - retries: 5
@@ -112,7 +115,7 @@ flow:
 
       - ssh_command:
           do:
-            ssh_command:
+            ssh.ssh_command:
               - host
               - port
               - username

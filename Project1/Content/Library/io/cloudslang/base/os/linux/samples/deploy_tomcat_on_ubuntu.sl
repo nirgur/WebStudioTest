@@ -44,6 +44,7 @@ imports:
   folders: io.cloudslang.base.os.linux.folders
   groups: io.cloudslang.base.os.linux.groups
   users: io.cloudslang.base.os.linux.users
+  samples: io.cloudslang.base.os.linux.samples
   strings: io.cloudslang.base.strings
 
 flow:
@@ -55,6 +56,7 @@ flow:
         sensitive: true
     - user_password:
         default: ''
+        required: false
         sensitive: true
     - java_version
     - download_url
@@ -75,7 +77,7 @@ flow:
   workflow:
     - install_java:
         do:
-          install_java_on_ubuntu:
+          samples.install_java_on_ubuntu:
             - host
             - root_password
             - java_version

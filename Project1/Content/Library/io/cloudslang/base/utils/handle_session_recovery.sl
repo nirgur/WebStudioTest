@@ -30,19 +30,22 @@ namespace: io.cloudslang.base.utils
 imports:
   ssh: io.cloudslang.base.ssh
   math: io.cloudslang.base.math
+  utils: io.cloudslang.base.utils
 
 flow:
   name: handle_session_recovery
   inputs:
     - enabled: True
     - retries
-    - return_result
+    - return_result:
+        required: false
     - return_code
-    - exit_status
+    - exit_status:
+        required: false
   workflow:
     - check_enabled:
         do:
-          is_true:
+          utils.is_true:
             - bool_value: ${ enabled }
         navigate:
           - SUCCESS: check_retries

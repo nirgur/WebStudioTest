@@ -43,6 +43,7 @@ namespace: io.cloudslang.cloud.openstack
 
 imports:
   email: io.cloudslang.base.mail
+  openstack: io.cloudslang.cloud.openstack
   servers: io.cloudslang.cloud.openstack.servers
 
 flow:
@@ -116,7 +117,7 @@ flow:
 
     - validate_server_exists:
         do:
-          validate_server_exists:
+          openstack.validate_server_exists:
             - host
             - identity_port
             - compute_port
@@ -161,17 +162,6 @@ flow:
           - GET_SERVERS_FAILURE: FAILURE
           - GET_SERVER_ID_FAILURE: FAILURE
           - DELETE_SERVER_FAILURE: FAILURE
-
-    - on_failure:
-        - send_error_mail:
-            do:
-              email.send_mail:
-                - hostname: ${email_host}
-                - port: ${email_port}
-                - from
-                - to
-                - subject: ${'Flow failure'}
-                - body: ${'Failure from step ' + subflow_error}
 
   results:
     - SUCCESS

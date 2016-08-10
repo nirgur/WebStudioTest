@@ -16,13 +16,10 @@
 
 namespace: io.cloudslang.base.utils
 
-operation:
+decision:
   name: is_true
   inputs:
     - bool_value
-  python_action:
-    script: |
-      pass
   results:
-    - SUCCESS: ${ bool_value == True }
+    - SUCCESS: ${ bool_value in [True, true, 'True', 'true'] }
     - FAILURE
