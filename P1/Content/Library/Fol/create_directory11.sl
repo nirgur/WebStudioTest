@@ -27,3 +27,17 @@ flow:
           - message
   outputs:
     - error_msg: "${'Failed to create directory with name ' + directory_name + ',error is ' + message}"
+extensions:
+  graph:
+    steps:
+      print_start:
+        x: 110
+        y: 148
+      create_directory:
+        x: 300
+        y: 100
+    results:
+      SUCCESS:
+        f82ee9bc-e94d-fdce-48a3-54aaeb9d76bf:
+          x: 500
+          y: 100
