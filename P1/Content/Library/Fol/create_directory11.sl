@@ -31,8 +31,8 @@ extensions:
   graph:
     steps:
       print_start:
-        x: 84
-        y: 159
+        x: 159
+        y: 178
       create_directory:
         x: 300
         y: 100
