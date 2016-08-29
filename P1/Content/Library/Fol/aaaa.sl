@@ -11,5 +11,5 @@ extensions:
   graph:
     steps:
       aaaa:
-        x: 148
+        x: 149
         y: 115
